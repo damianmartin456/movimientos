@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Movimientos</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#0a1a17">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <div class="top"><h1 id="ttl"></h1><div class="mn" id="mn"><button class="ib" data-a="mp" aria-label="Mes anterior">‹</button><b id="ml"></b><button class="ib" data-a="mx" aria-label="Mes siguiente">›</button></div></div>
+  <div id="v"></div>
+</div>
+<button class="fab" data-a="new" aria-label="Agregar movimiento"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></button>
+<nav><div id="nav"></div></nav>
+<div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog"></div></div>
+<div id="login" style="position:fixed;inset:0;z-index:50;background:radial-gradient(120% 60% at 50% -10%,#173a33,var(--bg) 55%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center"><h1>Movimientos</h1><p class="m" style="max-width:290px;font-size:15px">Tus finanzas, guardadas en tu propio Google Drive.</p><button class="btn" id="lbtn" style="padding:14px 24px;font-size:16px">Continuar con Google</button><button class="btn g" id="loff">Usar sin sincronizar</button><div class="err" id="lerr"></div></div>
+<div class="toast" id="toast"><span id="tm"></span><button id="tu"></button></div>
+
+<script src="app-core.js"></script>
+<script src="app-views.js"></script>
+<script src="app-views2.js"></script>
+<script src="app-forms.js"></script>
+<script src="app-cloud.js"></script>
+</body>
+</html>
