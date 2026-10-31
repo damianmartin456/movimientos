@@ -2,7 +2,7 @@
 const CLOUD={id:null,tok:null,tc:null,st:'',t:null};
 const SC='https://www.googleapis.com/auth/drive.appdata https://www.googleapis.com/auth/userinfo.email';
 const setSt=s=>{CLOUD.st=s;const e=$('syn');if(e)e.textContent=s};
-function cloudBox(){return `<h3>Cuenta de Google</h3><div class="box"><div class="row"><span class="m" id="syn">${esc(CLOUD.st||'Sin conexión con Drive')}</span><span class="row"><button class="btn g" data-a="syncnow">Sincronizar</button><button class="btn g" data-a="logout">Salir</button></span></div></div><div class="box row" style="margin-top:8px"><span>Vibración al tocar${navigator.vibrate?'':' <small>(no compatible con este navegador)</small>'}</span><button class="btn g" data-a="vibtog">${VIB?'Activada':'Desactivada'}</button></div><a class="btn g" href="tesoreria.html" style="display:block;text-align:center;margin-top:8px;text-decoration:none">Tesorería escolar →</a>`}
+function cloudBox(){return `<h3>Cuenta de Google</h3><div class="box"><div class="row"><span class="m" id="syn">${esc(CLOUD.st||'Sin conexión con Drive')}</span><span class="row"><button class="btn g" data-a="syncnow">Sincronizar</button><button class="btn g" data-a="logout">Salir</button></span></div></div><div class="box row" style="margin-top:8px"><span>Vibración al tocar${navigator.vibrate?'':' <small>(no compatible con este navegador)</small>'}</span><button class="btn g" data-a="vibtog">${VIB?'Activada':'Desactivada'}</button></div>`}
 async function api(url,opt={},retry=true){
   const r=await fetch(url,{...opt,headers:{...(opt.headers||{}),Authorization:'Bearer '+CLOUD.tok}});
   if(r.status===401&&retry){await getTok(true);return api(url,opt,false)}
