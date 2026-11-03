@@ -27,7 +27,7 @@ async function start(){
     if(r&&r.u>(D.u||0)){D=r;try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}}
     else if(!r||(D.u||0)>r.u)await push();
     else setSt('Sincronizado');
-    genRec();render();$('login').style.display='none';
+    D.cats=D.cats||DEFCATS.map(x=>({...x}));syncCats();genRec();render();$('login').style.display='none';
   }catch(e){setSt('No se pudo conectar con Drive');$('lerr').textContent='No se pudo leer tu Drive: '+(e&&e.message||e);$('login').style.display='flex'}}
 function initG(){
   if(!GOOGLE_CLIENT_ID||GOOGLE_CLIENT_ID.startsWith('PEGA')){$('lerr').textContent='Falta configurar el Client ID de Google (ver LEEME.md).';return}
