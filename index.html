@@ -20,6 +20,7 @@
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="app-print.css">
 </head>
 <body>
 <div class="app">
@@ -31,12 +32,16 @@
 <div class="scrim" id="scrim"><div class="sheet" id="sheet" role="dialog"></div></div>
 <div id="login" style="position:fixed;inset:0;z-index:50;background:radial-gradient(120% 60% at 50% -10%,#173a33,var(--bg) 55%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center"><img src="logo.png" alt="Mis Finanzas" style="width:min(300px,70vw);height:auto"><p class="m" style="max-width:290px;font-size:15px">Tus finanzas, guardadas en tu propio Google Drive.</p><button class="btn" id="lbtn" style="padding:14px 24px;font-size:16px">Continuar con Google</button><button class="btn g" id="loff">Usar sin sincronizar</button><div class="err" id="lerr"></div></div>
 <script>try{if(localStorage.getItem('fin.auth'))document.getElementById('login').style.display='none'}catch(e){}</script>
+<div id="print"></div>
 <div class="toast" id="toast"><span id="tm"></span><button id="tu"></button></div>
 
+<script src="app-cats.js"></script>
 <script src="app-core.js"></script>
 <script src="app-views.js"></script>
 <script src="app-views2.js"></script>
 <script src="app-forms.js"></script>
+<script src="app-import.js"></script>
+<script src="app-report.js"></script>
 <script src="app-cloud.js"></script>
 </body>
 </html>

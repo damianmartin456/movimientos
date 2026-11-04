@@ -1,0 +1,7 @@
+#print{display:none;font-family:Inter,system-ui,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+#print table{width:100%;border-collapse:collapse;font-size:12px}#print th,#print td{padding:6px 8px;border-bottom:1px solid #ccc;text-align:left}#print th{color:#444;font-weight:600;font-size:11px}#print .r{text-align:right}#print thead{display:table-header-group}#print tr{break-inside:avoid}#print tbody tr:nth-child(even) td,#print table tr:nth-child(even) td{background:#f4f6f8}
+#print h2{font-size:20px;margin:0 0 4px;font-family:inherit}#print h3{font-size:13px;margin:20px 0 6px;text-transform:uppercase;letter-spacing:.04em;font-family:inherit}
+#print .rhd{display:flex;align-items:center;gap:14px;border-bottom:2px solid #111;padding-bottom:10px;margin-bottom:12px}#print .lg2{width:52px;height:52px;border-radius:10px}
+#print .kvs{display:flex;gap:10px;margin:12px 0}#print .kv{flex:1;border:1px solid #bbb;padding:8px 10px}#print .kv small{display:block;color:#555}#print .kv b{font-size:16px}#print .bb{height:9px;background:#5b6b7f;border-radius:2px}
+@page{margin:14mm;@bottom-center{content:"Página " counter(page) " de " counter(pages);font-size:10px;color:#555}}
+@media print{body{background:#fff!important}body>*:not(#print){display:none!important}#print{display:block!important;color:#111}}

@@ -11,10 +11,12 @@ const accO=()=>D.acc.map(a=>[a.id,a.n]);
 function txSheet(x){
   const ed=!!x;x=x||{t:'out',k:'Mercado',tag:'Generales',d:iso(0),acc:D.acc[0]&&D.acc[0].id};
   const top=ed?'':`<div class="voice"><input id="vi" placeholder="Di o escribe: gasté 250 en café con débito" aria-label="Captura con IA"><button class="btn g" id="mic" aria-label="Dictar">🎤</button><button class="btn" id="go">IA</button></div>`;
-  sheet(ed?'Editar movimiento':'Nuevo movimiento',[{k:'t',l:'Tipo',o:[['out','Gasto'],['in','Ingreso'],['tr','Transferencia']],v:x.t},{k:'c',l:'Concepto',v:x.c,p:'Ej. Tacos, Nómina'},{k:'a',l:'Monto',type:'number',v:x.a,p:'0.00'},{k:'k',l:'Categoría',o:[...OUT,'Ingresos'],v:x.k},{k:'acc',l:'Cuenta',o:accO(),v:x.acc},{k:'to',l:'Cuenta destino (solo transferencias)',o:accO(),v:x.to||x.acc},{k:'tag',l:'Etiqueta',o:TAGS,v:x.tag},{k:'d',l:'Fecha',type:'date',v:x.d}],o=>{
+  sheet(ed?'Editar movimiento':'Nuevo movimiento',[{k:'t',l:'Tipo',o:[['out','Gasto'],['in','Ingreso'],['tr','Transferencia']],v:x.t},{k:'c',l:'Concepto',v:x.c,p:'Ej. Tacos, Nómina'},{k:'a',l:'Monto',type:'number',v:x.a,p:'0.00'},{k:'k',l:'Categoría',o:[...OUT,'Ingresos'],v:x.k},{k:'acc',l:'Cuenta',o:accO(),v:x.acc},{k:'to',l:'Cuenta destino (solo transferencias)',o:accO(),v:x.to||x.acc},{k:'tag',l:'Etiqueta',o:TAGS,v:x.tag},{k:'d',l:'Fecha',type:'date',v:x.d},{k:'lo',l:'Ubicación (opcional)',v:x.lo,p:'Ej. Jumbo Ágora'},...(ed?[]:[{k:'rp',l:'Repetir',o:['Nunca','Semanal','Mensual','Anual'],v:'Nunca'}])],o=>{
     const a=parseFloat(o.a);if(o.t!=='tr'&&!o.c.trim())return 'Escribe un concepto.';if(!(a>0))return 'Ingresa un monto mayor a cero.';
     if(o.t==='tr'&&o.acc===o.to)return 'Elige cuentas distintas.';
-    const n={id:x.id||Date.now(),t:o.t,c:o.t==='tr'?'Transferencia':o.c.trim(),a,k:o.t==='in'?'Ingresos':o.k,tag:o.tag,d:o.d||iso(0),acc:o.acc,to:o.t==='tr'?o.to:undefined};
+    const n={id:x.id||Date.now(),t:o.t,c:o.t==='tr'?'Transferencia':o.c.trim(),a,k:o.t==='in'?'Ingresos':o.k,tag:o.tag,d:o.d||iso(0),acc:o.acc,to:o.t==='tr'?o.to:undefined,lo:o.lo.trim()};
+    if(ed&&x.k!==n.k&&n.t!=='tr'){D.rules=D.rules||{};D.rules[norm(n.c).slice(0,24)]=n.k}
+    if(!ed&&o.t!=='tr'&&o.rp&&o.rp!=='Nunca')D.rec.push({id:'r'+Date.now(),t:o.t,c:n.c,a,k:n.k,acc:o.acc,f:o.rp,nx:addD(n.d,o.rp),lo:n.lo});
     D.tx=ed?D.tx.map(y=>y.id===x.id?n:y):[...D.tx,n]},
     {top,del:ed?()=>{const old=x;D.tx=D.tx.filter(y=>y.id!==old.id);save();render();toast('Movimiento eliminado',()=>{D.tx.push(old);save();render()})}:null,init:ed?null:voiceInit});
 }
@@ -34,7 +36,8 @@ document.addEventListener('click',e=>{
   if(e.target===$('scrim'))return close();
   const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,id=b.dataset.id,v=b.dataset.v;vib(15);
   if(a==='tab'){S.v=v;render()}
-  else if(a==='mp'||a==='mx'){const d=new Date(S.m+'-15T12:00');d.setMonth(d.getMonth()+(a==='mx'?1:-1));S.m=d.toISOString().slice(0,7);render()}
+  else if(a==='mp'||a==='mx'){S.ref=stp(S.ref,a==='mx'?1:-1,S.v==='mov'?S.p:'mes');S.m=S.ref.slice(0,7);render()}
+  else if(a==='per'){S.p=v;render()}else if(a==='ncat')catSheet();else if(a==='ecat')catSheet(v);else if(a==='repf')repSheet();else if(a==='impo')impSheet()
   else if(a==='type'){S.type=v;render()}else if(a==='tag'){S.tag=v;render()}
   else if(a==='new')txSheet();
   else if(a==='edit')txSheet(D.tx.find(x=>String(x.id)===id));
