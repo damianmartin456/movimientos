@@ -1,0 +1,3 @@
+nav div{grid-auto-flow:column;grid-auto-columns:1fr;grid-template-columns:none}
+@media(max-width:420px){nav button,nav a{font-size:10.5px;padding-left:1px;padding-right:1px}}
+@media(min-width:900px){nav button,nav a{font-size:15px}}

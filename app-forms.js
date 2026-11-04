@@ -37,7 +37,7 @@ document.addEventListener('click',e=>{
   const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,id=b.dataset.id,v=b.dataset.v;vib(15);
   if(a==='tab'){S.v=v;render()}
   else if(a==='mp'||a==='mx'){S.ref=stp(S.ref,a==='mx'?1:-1,S.v==='mov'?S.p:'mes');S.m=S.ref.slice(0,7);render()}
-  else if(a==='per'){S.p=v;render()}else if(a==='ncat')catSheet();else if(a==='ecat')catSheet(v);else if(a==='repf')repSheet();else if(a==='impo')impSheet()
+  else if(a==='per'){S.p=v;render()}else if(a==='ncat')catSheet();else if(a==='ecat')catSheet(v);else if(a==='repf')repSheet();else if(a==='impo')impSheet();else if(a==='ncard')cardSheet();else if(a==='ecard')cardSheet(id);else if(a==='nloan')loanSheet();else if(a==='eloan')loanSheet(id);else if(a==='abono')abonoSheet(id);else if(a==='wloan')wLoan(id);else if(a==='ics')icsEx()
   else if(a==='type'){S.type=v;render()}else if(a==='tag'){S.tag=v;render()}
   else if(a==='new')txSheet();
   else if(a==='edit')txSheet(D.tx.find(x=>String(x.id)===id));
