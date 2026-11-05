@@ -17,14 +17,11 @@ async function push(){
     const r=await api('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id',{method:'POST',headers:{'Content-Type':'multipart/related; boundary='+b},body:`--${b}\r\nContent-Type: application/json\r\n\r\n${m}\r\n--${b}\r\nContent-Type: application/json\r\n\r\n${body}\r\n--${b}--`});
     CLOUD.id=(await r.json()).id}
   else await api('https://www.googleapis.com/upload/drive/v3/files/'+CLOUD.id+'?uploadType=media',{method:'PATCH',headers:{'Content-Type':'application/json'},body});
-  setSt('Guardado en Drive · '+new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'}))}
-window.cloudPush=()=>{if(!CLOUD.tok)return;setSt('Cambios sin guardar…');clearTimeout(CLOUD.t);CLOUD.t=setTimeout(()=>push().catch(()=>setSt('Error al guardar. Toca Sincronizar.')),1500)};
+  setSt('Guardado en Drive · '+new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'}));try{saveBase(body)}catch(e){}}
+window.cloudPush=()=>{if(!CLOUD.tok)return;setSt('Cambios sin guardar…');clearTimeout(CLOUD.t);CLOUD.t=setTimeout(()=>sync().catch(()=>setSt('Error al guardar. Toca Sincronizar.')),1500)};
 async function start(){
   setSt('Cargando desde Drive…');
-  try{const r=await pull();
-    if(r&&r.u>(D.u||0)){D=r;D.alu=D.alu||[];try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}}
-    else if(!r||(D.u||0)>r.u)await push();
-    else setSt('Sincronizado');
+  try{await sync(true);D.alu=D.alu||[];
     render();$('login').style.display='none';
   }catch(e){setSt('No se pudo conectar con Drive');$('lerr').textContent='No se pudo leer tu Drive: '+(e&&e.message||e);$('login').style.display='flex'}}
 function initG(){

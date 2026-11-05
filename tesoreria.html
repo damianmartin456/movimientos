@@ -32,6 +32,7 @@
 <div id="login" style="position:fixed;inset:0;z-index:50;background:radial-gradient(120% 60% at 50% -10%,#173a33,var(--bg) 55%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;text-align:center"><img src="logo.png" alt="Mis Finanzas" style="width:min(300px,70vw);height:auto"><p class="m" style="max-width:290px;font-size:15px">Ingresos, recibos y gastos, guardados en tu propio Google Drive.</p><button class="btn" id="lbtn" style="padding:14px 24px;font-size:16px">Continuar con Google</button><button class="btn g" id="loff">Usar sin sincronizar</button><div class="err" id="lerr"></div></div>
 <script>try{if(localStorage.getItem('fin.auth'))document.getElementById('login').style.display='none'}catch(e){}</script>
 <div class="toast" id="toast"><span id="tm"></span><button id="tu" style="display:none"></button></div>
+<script src="pin.js"></script>
 <script src="t-core.js"></script>
 <script src="t-views.js"></script>
 <script src="t-forms.js"></script>
@@ -44,7 +45,8 @@
 <script src="ux.js"></script>
 <script src="t-ux.js"></script>
 <script src="t-cal.js"></script>
+<script src="merge.js"></script>
 <script src="t-cloud.js"></script>
-<script>setTimeout(function(){var F=['style.css','tes.css','t-core.js','t-views.js','t-forms.js','t-extra.js','t-report.js','t-alu.js','t-info.js','t-backup.js','t-cal.js','t-ux.js','ux.js','ux.css','t-cloud.js'];Promise.all(F.map(function(f){return fetch(f,{cache:'no-store'}).then(function(r){return r.text().then(function(t){return [f,r.ok&&t.trim().charAt(0)!=='<']})}).catch(function(){return [f,false]})})).then(function(R){var bad=R.filter(function(x){return !x[1]}).map(function(x){return x[0]}),v=document.getElementById('v'),ok=document.getElementById('nav').innerHTML;if(bad.length||!ok){v.innerHTML='<div style="padding:24px;color:#f0566a;font-size:14px">'+(bad.length?'Faltan o están dañados estos archivos: <b>'+bad.join(', ')+'</b>. Súbelos de nuevo a GitHub y recarga con Ctrl+Shift+R.':'La página no terminó de cargar. Recarga con Ctrl+Shift+R.')+'</div>'}})},2500)</script>
+<script>setTimeout(function(){var F=['style.css','tes.css','t-core.js','t-views.js','t-forms.js','t-extra.js','t-report.js','t-alu.js','t-info.js','t-backup.js','t-cal.js','t-ux.js','ux.js','ux.css','merge.js','pin.js','t-cloud.js'];Promise.all(F.map(function(f){return fetch(f,{cache:'no-store'}).then(function(r){return r.text().then(function(t){return [f,r.ok&&t.trim().charAt(0)!=='<']})}).catch(function(){return [f,false]})})).then(function(R){var bad=R.filter(function(x){return !x[1]}).map(function(x){return x[0]}),v=document.getElementById('v'),ok=document.getElementById('nav').innerHTML;if(bad.length||!ok){v.innerHTML='<div style="padding:24px;color:#f0566a;font-size:14px">'+(bad.length?'Faltan o están dañados estos archivos: <b>'+bad.join(', ')+'</b>. Súbelos de nuevo a GitHub y recarga con Ctrl+Shift+R.':'La página no terminó de cargar. Recarga con Ctrl+Shift+R.')+'</div>'}})},2500)</script>
 </body>
 </html>
