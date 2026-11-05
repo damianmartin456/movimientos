@@ -40,8 +40,11 @@
 <script src="t-alu.js"></script>
 <script src="t-info.js"></script>
 <script src="t-backup.js"></script>
+<link rel="stylesheet" href="ux.css">
+<script src="ux.js"></script>
+<script src="t-ux.js"></script>
 <script src="t-cal.js"></script>
 <script src="t-cloud.js"></script>
-<script>setTimeout(function(){var F=['style.css','tes.css','t-core.js','t-views.js','t-forms.js','t-extra.js','t-report.js','t-alu.js','t-info.js','t-backup.js','t-cal.js','t-cloud.js'];Promise.all(F.map(function(f){return fetch(f,{cache:'no-store'}).then(function(r){return r.text().then(function(t){return [f,r.ok&&t.trim().charAt(0)!=='<']})}).catch(function(){return [f,false]})})).then(function(R){var bad=R.filter(function(x){return !x[1]}).map(function(x){return x[0]}),v=document.getElementById('v'),ok=document.getElementById('nav').innerHTML;if(bad.length||!ok){v.innerHTML='<div style="padding:24px;color:#f0566a;font-size:14px">'+(bad.length?'Faltan o están dañados estos archivos: <b>'+bad.join(', ')+'</b>. Súbelos de nuevo a GitHub y recarga con Ctrl+Shift+R.':'La página no terminó de cargar. Recarga con Ctrl+Shift+R.')+'</div>'}})},2500)</script>
+<script>setTimeout(function(){var F=['style.css','tes.css','t-core.js','t-views.js','t-forms.js','t-extra.js','t-report.js','t-alu.js','t-info.js','t-backup.js','t-cal.js','t-ux.js','ux.js','ux.css','t-cloud.js'];Promise.all(F.map(function(f){return fetch(f,{cache:'no-store'}).then(function(r){return r.text().then(function(t){return [f,r.ok&&t.trim().charAt(0)!=='<']})}).catch(function(){return [f,false]})})).then(function(R){var bad=R.filter(function(x){return !x[1]}).map(function(x){return x[0]}),v=document.getElementById('v'),ok=document.getElementById('nav').innerHTML;if(bad.length||!ok){v.innerHTML='<div style="padding:24px;color:#f0566a;font-size:14px">'+(bad.length?'Faltan o están dañados estos archivos: <b>'+bad.join(', ')+'</b>. Súbelos de nuevo a GitHub y recarga con Ctrl+Shift+R.':'La página no terminó de cargar. Recarga con Ctrl+Shift+R.')+'</div>'}})},2500)</script>
 </body>
 </html>

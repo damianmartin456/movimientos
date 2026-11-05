@@ -1,0 +1,6 @@
+.sy{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--mute);cursor:pointer;white-space:nowrap}.sy i{width:9px;height:9px;border-radius:50%;background:#6b7a90;flex:none}.sy.grn i{background:var(--green)}.sy.amb i{background:var(--amb)}.sy.red i{background:var(--red)}.sy .f{display:none}
+@media(min-width:900px){.sy .s{display:none}.sy .f{display:inline}}
+@media(max-width:420px){.sy .s{display:none}}
+.bad{border-color:var(--red)!important;box-shadow:0 0 0 2px rgba(240,86,106,.28)}
+.shake{animation:sk .35s}@keyframes sk{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+@media(prefers-reduced-motion:reduce){.shake{animation:none}}
