@@ -1,7 +1,7 @@
 function vMov(){
   const q=S.q.trim().toLowerCase();
   const rows=D.tx.filter(x=>inR(x)&&(S.type==='all'||x.t===S.type)&&(S.tag==='all'||x.tag===S.tag)&&(!q||(x.c+' '+x.k+' '+x.tag).toLowerCase().includes(q))).sort((a,b)=>b.d.localeCompare(a.d)||b.id-a.id);
-  let h=`<div class="chips">${chips('per',[['dia','Día'],['sem','Semana'],['mes','Mes'],['ano','Año']],S.p)}</div><div class="sum"><div class="bal"><small>Balance total en cuentas</small><b>${money(D.acc.reduce((s,a)=>s+bal(a),0))}</b></div><div><small>Ingresos${PL[S.p]}</small><b class="in">${money(sumR('in'))}</b></div><div><small>Gastos${PL[S.p]}</small><b class="out">${money(sumR('out'))}</b></div></div>${vSem()}
+  let h=`<div class="row" style="margin-bottom:10px"><button class="btn g" data-a="scan" style="flex:1">📷 Escanear ticket o pegar aviso del banco</button></div><div class="chips">${chips('per',[['dia','Día'],['sem','Semana'],['mes','Mes'],['ano','Año']],S.p)}</div><div class="sum"><div class="bal"><small>Balance total en cuentas</small><b>${money(D.acc.reduce((s,a)=>s+bal(a),0))}</b></div><div><small>Ingresos${PL[S.p]}</small><b class="in">${money(sumR('in'))}</b></div><div><small>Gastos${PL[S.p]}</small><b class="out">${money(sumR('out'))}</b></div></div>${vSem()}
   <label class="search"><input id="q" type="search" placeholder="Buscar transacciones…" value="${esc(S.q)}" aria-label="Buscar"></label>
   <div class="chips">${chips('type',[['all','Todos'],['in','Ingresos'],['out','Gastos'],['tr','Transferencias']],S.type)}</div>
   <div class="chips tags">${chips('tag',[['all','Todos'],...TAGS.map(t=>[t,t])],S.tag)}</div>`;
